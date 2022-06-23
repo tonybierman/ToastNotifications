@@ -1,1 +1,2 @@
-#Blazor Toast Notifications
+Blazor Toast Notifications 
+with message queue
