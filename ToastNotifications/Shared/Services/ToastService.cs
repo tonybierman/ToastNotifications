@@ -5,62 +5,65 @@ namespace ToastNotifications.Shared.Services
 {
     public class ToastService : IDisposable
     {
+        // Events
         public event Action<string, ToastLevel> OnShow;
         public event Action OnHide;
-        private System.Timers.Timer Countdown;
+
+        // Fields
+        private System.Timers.Timer _countdown;
         private double _intervalMs = 10000;
-        Queue<Action> m_que = new Queue<Action>();
-        private bool isShowing;
+        Queue<Action> _que = new Queue<Action>();
+        private bool _isShowing;
 
         public void ShowToast(string message, ToastLevel level)
         {
-            m_que.Enqueue(() =>
+            _que.Enqueue(() =>
             {
-                isShowing = true;
+                _isShowing = true;
                 OnShow?.Invoke(message, level);
                 StartCountdown();
             });
 
-            if (!isShowing)
-                m_que.Dequeue().Invoke();
+            if (!_isShowing)
+                _que.Dequeue().Invoke();
         }
 
         private void StartCountdown()
         {
             SetCountdown();
 
-            if (Countdown.Enabled)
+            if (_countdown.Enabled)
             {
-                Countdown.Stop();
-                Countdown.Start();
+                _countdown.Stop();
+                _countdown.Start();
             }
             else
             {
-                Countdown.Start();
+                _countdown.Start();
             }
         }
 
         private void SetCountdown()
         {
-            if (Countdown == null)
+            if (_countdown == null)
             {
-                Countdown = new System.Timers.Timer(_intervalMs);
-                Countdown.Elapsed += HideToast;
-                Countdown.AutoReset = false;
+                _countdown = new System.Timers.Timer(_intervalMs);
+                _countdown.Elapsed += HideToast;
+                _countdown.AutoReset = false;
             }
         }
 
         private void HideToast(object source, ElapsedEventArgs args)
         {
             OnHide?.Invoke();
-            isShowing = false;
-            if(m_que.Count > 0)
-                m_que.Dequeue().Invoke();
+            _isShowing = false;
+            if(_que.Count > 0)
+                _que.Dequeue().Invoke();
         }
 
         public void Dispose()
         {
-            Countdown?.Dispose();
+            _countdown?.Dispose();
         }
     }
 }
