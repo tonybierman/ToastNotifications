@@ -9,10 +9,20 @@ namespace ToastNotifications.Shared.Services
         public event Action OnHide;
         private System.Timers.Timer Countdown;
         private double _intervalMs = 10000;
+        Queue<Action> m_que = new Queue<Action>();
+        private bool isShowing;
+
         public void ShowToast(string message, ToastLevel level)
         {
-            OnShow?.Invoke(message, level);
-            StartCountdown();
+            m_que.Enqueue(() =>
+            {
+                isShowing = true;
+                OnShow?.Invoke(message, level);
+                StartCountdown();
+            });
+
+            if (!isShowing)
+                m_que.Dequeue().Invoke();
         }
 
         private void StartCountdown()
@@ -43,6 +53,9 @@ namespace ToastNotifications.Shared.Services
         private void HideToast(object source, ElapsedEventArgs args)
         {
             OnHide?.Invoke();
+            isShowing = false;
+            if(m_que.Count > 0)
+                m_que.Dequeue().Invoke();
         }
 
         public void Dispose()
