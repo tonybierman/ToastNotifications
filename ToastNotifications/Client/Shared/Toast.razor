@@ -2,6 +2,8 @@
 
 <style>
     .container{
+        border-radius: 5px/5px;
+        border-width: 1.5px;
         display:inline-block;
         width:@width;
         height:@height;
@@ -9,30 +11,29 @@
         background-color:transparent;
         position:absolute;
         z-index:2;
+        margin: 1.5px;
     }
 
     .fade-out{
-       animation: fade @AnimationTime linear forwards;
+        animation: fadeOut @AnimationTime linear forwards;
     }
 
     .fade-in{
-       animation: fadeIn @AnimationTime linear forwards;
+        animation: fadeIn @AnimationTime linear forwards;
     }
 
-    .spin-in{
-       animation: spin @AnimationTime linear forwards;
+    .toast-icon {
+        max-height: 11px;
     }
 
-    @@keyframes fade {
-      0%   {opacity:1;}
-      99%  {width:@width; height:@height;}
-      100% {width:0px;height:0px; opacity:0;}
+    .toast-body {
+        font-size: 14px;
     }
 
-    @@keyframes spin {
-      0%   {width:0px;height:0px; transform: rotate(0deg);}
-      99%  {width:@width; height:@height;}
-      100% {width:@width;height:@height;transform: rotate(1440deg);}
+    @@keyframes fadeOut {
+        0%   {opacity:1;}
+        99%  {width:@width; height:@height;}
+        100% {width:0px;height:0px; opacity:0;}
     }
 
     @@keyframes fadeIn {

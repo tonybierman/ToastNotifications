@@ -3,11 +3,16 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32526.322
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToastNotifications.Server", "ToastNotifications\Server\ToastNotifications.Server.csproj", "{920EAB15-E131-47A8-8701-9B8D595E576A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ToastNotifications.Server", "ToastNotifications\Server\ToastNotifications.Server.csproj", "{920EAB15-E131-47A8-8701-9B8D595E576A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToastNotifications.Client", "ToastNotifications\Client\ToastNotifications.Client.csproj", "{8FC132FB-444B-4A71-9462-1D315A999BFB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ToastNotifications.Client", "ToastNotifications\Client\ToastNotifications.Client.csproj", "{8FC132FB-444B-4A71-9462-1D315A999BFB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToastNotifications.Shared", "ToastNotifications\Shared\ToastNotifications.Shared.csproj", "{81B4FF0A-2DB4-43A5-8608-D1C7112F4939}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ToastNotifications.Shared", "ToastNotifications\Shared\ToastNotifications.Shared.csproj", "{81B4FF0A-2DB4-43A5-8608-D1C7112F4939}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{C728A575-B46C-4DD5-9FBF-8C5140186087}"
+	ProjectSection(SolutionItems) = preProject
+		readme.md = readme.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

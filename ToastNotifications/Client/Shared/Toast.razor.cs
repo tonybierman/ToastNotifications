@@ -6,12 +6,15 @@ namespace ToastNotifications.Client.Shared
 {
     public class ToastBase : ComponentBase, IDisposable
     {
+        // Properties
         [Parameter] public string AnimationTime { get; set; }
         [Parameter] public bool IsShown { get; set; }
         [Inject] ToastService ToastService { get; set; }
         protected string Heading { get; set; }
         protected string Message { get; set; }
         protected string BackgroundCssClass { get; set; }
+
+        // Fields
         protected string IconCssClass { get; set; }
         protected string width = "210px";
         protected string height = "90px";

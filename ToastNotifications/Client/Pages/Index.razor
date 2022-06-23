@@ -10,7 +10,11 @@ Welcome to your new app.
 
 <SurveyPrompt Title="How is Blazor working for you?" />
 
-<button class="btn btn-info" onclick="@(() => toastService.ShowToast("I'm an INFO message", ToastLevel.Info))">Info Toast</button>
-<button class="btn btn-success" onclick="@(() => toastService.ShowToast("I'm a SUCCESS message", ToastLevel.Success))">Success Toast</button>
-<button class="btn btn-warning" onclick="@(() => toastService.ShowToast("I'm a WARNING message", ToastLevel.Warning))">Warning Toast</button>
-<button class="btn btn-danger" onclick="@(() => toastService.ShowToast("I'm an ERROR message", ToastLevel.Error))">Error Toast</button>
+<button class="btn btn-info" onclick="@(() => toastService.ShowToast($"INFO {_msg}", ToastLevel.Info))">Info Toast</button>
+<button class="btn btn-success" onclick="@(() => toastService.ShowToast($"SUCCESS {_msg}", ToastLevel.Success))">Success Toast</button>
+<button class="btn btn-warning" onclick="@(() => toastService.ShowToast($"WARNING {_msg}", ToastLevel.Warning))">Warning Toast</button>
+<button class="btn btn-danger" onclick="@(() => toastService.ShowToast($"ERROR {_msg}", ToastLevel.Error))">Error Toast</button>
+
+@code{
+    private string _msg = "Lorem ipsum dolor sit amet, consectetur adipiscing";
+}

@@ -8,7 +8,7 @@ namespace ToastNotifications.Shared.Services
         public event Action<string, ToastLevel> OnShow;
         public event Action OnHide;
         private System.Timers.Timer Countdown;
-
+        private double _intervalMs = 10000;
         public void ShowToast(string message, ToastLevel level)
         {
             OnShow?.Invoke(message, level);
@@ -34,7 +34,7 @@ namespace ToastNotifications.Shared.Services
         {
             if (Countdown == null)
             {
-                Countdown = new System.Timers.Timer(5000);
+                Countdown = new System.Timers.Timer(_intervalMs);
                 Countdown.Elapsed += HideToast;
                 Countdown.AutoReset = false;
             }
